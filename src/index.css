@@ -1,0 +1,117 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --rr-canvas: #F8FAFC;
+  --rr-surface: #FFFFFF;
+  --rr-surface-hover: #F1F5F9;
+  --rr-elevated: #FFFFFF;
+  --rr-trough: #F1F5F9;
+  --rr-border: #E2E8F0;
+  --rr-border-strong: #CBD5E1;
+  --rr-text: #0F172A;
+  --rr-text-muted: #64748B;
+  --rr-violet: #7C3AED;
+  color-scheme: light;
+}
+
+.dark {
+  --rr-canvas: #0B0D12;
+  --rr-surface: #141821;
+  --rr-surface-hover: #1A1F2C;
+  --rr-elevated: #1A1F2C;
+  --rr-trough: #0F1219;
+  --rr-border: #1F2430;
+  --rr-border-strong: #2D3546;
+  --rr-text: #FFFFFF;
+  --rr-text-muted: #8E9BB5;
+  --rr-violet: #8B5CF6;
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: var(--rr-canvas);
+  color: var(--rr-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Kinetic Arc game card hover glow driven by CSS custom property --card-accent */
+.game-card {
+  background-color: var(--rr-surface);
+  border: 1px solid var(--rr-border);
+  transition:
+    border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.game-card:hover,
+.game-card:focus-within {
+  border-color: var(--card-accent, #8B5CF6);
+  box-shadow:
+    0 0 24px -4px color-mix(in srgb, var(--card-accent, #8B5CF6) 28%, transparent),
+    inset 0 1px 1px 0 color-mix(in srgb, var(--card-accent, #8B5CF6) 20%, transparent);
+}
+
+.game-card:hover .game-card-art {
+  transform: scale(1.05);
+}
+
+.game-card-art {
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pill-cta {
+  transition:
+    transform 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 150ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pill-cta:hover {
+  filter: brightness(1.08);
+}
+
+.pill-cta:active {
+  transform: translateY(1px);
+}
+
+:focus-visible {
+  outline: 2px solid #8B5CF6;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
